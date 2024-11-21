@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: "Kanit", sans-serif;
 }
 
 .App {
@@ -9,7 +10,7 @@ body {
 }
 
 header {
-  background-color: #76a6ce;
+  background-image: linear-gradient(to right, #5e60ce, #5390d9, #4ea8de, #48bfe3);
   grid-column: 1 / span 2;
   display: flex;
   justify-content: space-between;
@@ -20,34 +21,47 @@ header {
 h1 {
   color: white;
   font-size: 2.8em;
+  font-family: "Kanit", sans-serif;
 }
 
 button {
   padding: 10px;
   font-size: 1.2em;
-  background-color: #548dbb;
+  font-family: "Kanit", sans-serif;
+  cursor: pointer;
+  background-color: #44a0d9;
   color: white;
-  border-radius: 10%;
+  border-radius: 10px;
   border: 2px solid white;
 }
 
 nav {
-  background-color: #add5f5;
+  background-color: #4ea7dea4;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 10px;
+  gap: 10px;
 }
 
 li {
-  border-bottom: 1px solid #001d3d;
-  color: #001d3d;
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  background-color: #44a0d9;
   list-style-type: none;
   font-size: 1.3em;
-  width: 100%;
+  width: 80%;
   padding: 10px;
   text-align: center;
 }
 
-.feed {
-  background-color: #e3f2fd;
+li:hover {
+  background-color: white;
+  color: #001d3d;
+  cursor: pointer;
+}
+
+.feed, .profile {
+  background-color: #dbedf8;
 }

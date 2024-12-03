@@ -179,3 +179,111 @@ ul {
 button img {
   height: 20px;
 }
+
+.feed {
+  display: grid;
+  grid-template: 1fr / 1fr 1fr/ 1fr;
+  gap: 20px;
+}
+
+.feedHeader, .topAlbums {
+  grid-column: 1 / span 2;
+}
+
+.feedHeader h1 {
+  color: #00458e;
+}
+
+.feedHeader {
+  height: 10%;
+}
+
+.topArtists {
+  display: flex;
+  flex-direction: column;
+  background-color: #2190d5;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.topArtists li {
+  height: 50px;
+}
+
+.listIcon {
+  padding: 0;
+  margin: 0;
+  font-size: 2em;
+}
+
+.playlist {
+  background-color: #48bfe3;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.playlist ul {
+  grid-column: 1 / span 2;
+}
+
+.playlist li {
+  padding: 10px;
+  color: white;
+}
+
+.playlistDesc {
+  display: flex;
+  gap: 20px;
+}
+
+.playlistBody {
+  background-color: #0050a5;
+  padding: 10px;
+}
+
+.playlistDesc img {
+  height: 150px;
+}
+
+.topAlbums img {
+  height: 100px;
+}
+
+.topAlbums li {
+  display: flex;
+  flex-direction: column;
+  color:#dbedf8;
+}
+
+p {
+  color: white;
+}
+
+.playlistTitle {
+  font-size: 1.5em;
+}
+
+.topArtists li {
+  background-color: #dbedf8;
+  padding: 20px;
+  border-radius: 10px;
+  color:#00346b;
+}
+
+.topAlbums {
+  background-color: #5e60ce;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.topAlbums ul {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+h3 {
+  color: #00346b;
+  font-size: 1.6em;
+}
+

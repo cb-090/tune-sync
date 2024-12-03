@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useAuthentication, loggedInUserDisplayName, loggedInUserProfilePhoto, loggedInUserId } from '../services/authService.js'
-import { addUser, fetchUsers } from "../services/databaseService.js"
+import { addUser, fetchUsers, addSong, addArtist, addAlbum, fetchSongs, fetchArtists, fetchAlbums } from "../services/databaseService.js"
 import Header from './Header.jsx'
 import Users from './Users.jsx'
 import Feed from './Feed.jsx'
@@ -15,7 +15,8 @@ export default function App() {
   const [data, setData] = useState({})
   const [query, setQuery] = useState("")
   const [queryType, setQueryType] = useState("")
-  const [profile, setProfile] = useState(null)
+  const [userProfile, setUserProfile] = useState(null)
+  const [currentProfile, setCurrentProfile] = useState(null)
   const [userList, setUserList] = useState([])
   const [songs, setSongs] = useState([])
   const [artists, setArtists] = useState([])
@@ -23,16 +24,34 @@ export default function App() {
 
   const user = useAuthentication()
 
+  async function save(result) {
+    console.log("saving!")
+    if (result.wrapperType == "track") {
+        console.log(`Saved track ${result.trackId}`)
+        addSong(result)
+    }
+    if (result.wrapperType == "artist") {
+        console.log(`Saved artist ${result.artistId}`)
+        addArtist(result)
+    }
+    if (result.wrapperType == "collection") {
+        console.log(`Saved album ${result.collectionId}`)
+        addAlbum(result)
+    }
+    setSongs(await fetchSongs(loggedInUserId()))
+    setArtists(await fetchArtists(loggedInUserId()))
+    setAlbums(await fetchAlbums(loggedInUserId()))
+  }
+
   function setHome() {
     setEditing(false)
     setBrowsing(false)
-    setProfile(null)
   }
 
   function switchProfileTo(profile) {
     setBrowsing(true)
     setEditing(false)
-    setProfile(profile)
+    setCurrentProfile(profile)
   }
   
   function editProfile() {
@@ -41,23 +60,34 @@ export default function App() {
   }
 
   useEffect(() => {
+    async function logInUser() {
     if (user) {
       console.log("signing in")
-      addUser(loggedInUserId(), loggedInUserDisplayName(), loggedInUserProfilePhoto()).then(setProfile)
+      addUser(loggedInUserId(), loggedInUserDisplayName(), loggedInUserProfilePhoto()).then(setUserProfile)
       fetchUsers().then(setUserList)
+      setSongs(await fetchSongs(loggedInUserId()))
+      setArtists(await fetchArtists(loggedInUserId()))
+      setAlbums(await fetchAlbums(loggedInUserId()))
     }
     else {
       console.log("signing out")
-      setProfile(null)
+      setUserProfile(null)
       setHome()
     }
+  }
+  logInUser()
   }, [user])
 
   useEffect(() => {
-    setSongs()
-    setArtists()
-    setAlbums()
-  }, [profile])
+    if (currentProfile) {
+    async function fetchProfile() {
+      setSongs(await fetchSongs(currentProfile.userId))
+      setArtists(await fetchArtists(currentProfile.userId))
+      setAlbums(await fetchAlbums(currentProfile.userId))
+  }
+  fetchProfile()
+}
+  }, [currentProfile])
 
   useEffect(() => {
     if (query && queryType) {
@@ -82,9 +112,9 @@ export default function App() {
     <div className="App">
       <Header user={user} editProfile={editProfile} setHome={setHome} />
       <Users switchProfileTo={switchProfileTo} users={userList}/>
-      {editing && profile ?
-      <Profile user={profile} data={data} search={setQuery} changeQuery={setQueryType} /> :
-      browsing && profile ? <Feed user={profile} /> :
+      {editing && user ?
+      <Profile user={userProfile} save={save} songs={songs} artists={artists} albums={albums} data={data} search={setQuery} changeQuery={setQueryType} /> :
+      browsing && currentProfile ? <Feed user={currentProfile} songs={songs} artists={artists} albums={albums} /> :
       <Feed />}
     </div>
   )

@@ -36,7 +36,6 @@ export async function addSong(song) {
   console.log("Added song to database")
 
   const userId = loggedInUserId()
-  const userRef = doc(db, "users", userId)
 
   const data = { 
     trackId: song.trackId,
@@ -44,45 +43,39 @@ export async function addSong(song) {
     date: Timestamp.now() 
   }
 
-  await setDoc(doc(db, collection(db, userRef), data.trackId), data)
+  const docRef = await setDoc(doc(db, "songs", `${data.userId}.${data.trackId}`), data)
   
   return true
 }
 
-export async function addArtist() {
+export async function addArtist(artist) {
   console.log("Added artist to database")
 
   const userId = loggedInUserId()
-  const username = loggedInUserDisplayName()
-  const userPhoto = loggedInUserProfilePhoto()
 
   const data = { 
+    artistId: artist.artistId,
     userId,
-    username,
-    userPhoto,
     date: Timestamp.now() 
   }
 
-  await setDoc(doc(db, "users", data.userId), data)
+  const docRef = await setDoc(doc(db, "artists", `${data.userId}.${data.artistId}`), data)
   
   return true
 }
 
-export async function addAlbum() {
+export async function addAlbum(album) {
   console.log("Added album to database")
 
   const userId = loggedInUserId()
-  const username = loggedInUserDisplayName()
-  const userPhoto = loggedInUserProfilePhoto()
 
   const data = { 
+    collectionId: album.collectionId,
     userId,
-    username,
-    userPhoto,
     date: Timestamp.now() 
   }
 
-  await setDoc(doc(db, "users", data.userId), data)
+  const docRef = await setDoc(doc(db, "albums", `${data.userId}.${data.collectionId}`), data)
   
   return true
 }
@@ -97,23 +90,38 @@ export async function fetchUsers() {
   }))
 }
 
-export async function fetchSongs() {
+export async function fetchSongs(userId) {
   const snapshot = await getDocs(
-    query(collection(db, "songs"), where("userId", "==", loggedInUserId()), limit(20))
+    query(collection(db, "songs"), where("userId", "==", userId), limit(20))
   )
+
   return snapshot.docs.map((doc) => ({
     id: doc.data().userId,
     ...doc.data(),
   }))
 }
 
-// export async function fetchArtists() {
-  
-// }
+export async function fetchArtists(userId) {
+  const snapshot = await getDocs(
+    query(collection(db, "artists"), where("userId", "==", userId), limit(20))
+  )
 
-// export async function fetchAlbums() {
-  
-// }
+  return snapshot.docs.map((doc) => ({
+    id: doc.data().userId,
+    ...doc.data(),
+  }))
+}
+
+export async function fetchAlbums(userId) {
+  const snapshot = await getDocs(
+    query(collection(db, "albums"), where("userId", "==", userId), limit(20))
+  )
+
+  return snapshot.docs.map((doc) => ({
+    id: doc.data().userId,
+    ...doc.data(),
+  }))
+}
 
 // export async function addUser({ title, body }) {
 //   const data = { 

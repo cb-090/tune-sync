@@ -1,26 +1,7 @@
 import SearchBar from "./SearchBar"
 import Results from "./Results"
-import { addSong, addArtist, addAlbum } from "../services/databaseService"
 
-export default function Profile( {user, data, search, changeQuery} ) {
-
-    const userSongs = ["360", "Good Luck, Babe!", "Espresso"]
-    const userArtists = ["Taylor Swift", "The Weeknd", "Tyler the Creator"]
-    const userAlbums = ["Short 'n Sweet", "Hit Me Hard and Soft", "Brat"]
-
-    function save(result) {
-        console.log("saving!")
-        if (result.wrapperType == "track") {
-            console.log(`Saved track ${result.trackId}`)
-            // addSong(result)
-        }
-        if (result.wrapperType == "artist") {
-            console.log(`Saved artist ${result.artistId}`)
-        }
-        if (result.wrapperType == "collection") {
-            console.log(`Saved album ${result.collectionId}`)
-        }
-    }
+export default function Profile( {user, save, songs, artists, albums, data, search, changeQuery} ) {
 
     return <div className="userProfile">
         <div className="userInfo">
@@ -29,18 +10,24 @@ export default function Profile( {user, data, search, changeQuery} ) {
         </div>
         <section className="favorites">
         <ul className="songList">
-             {userSongs.map((song, index) => (
-                <li key={index}>{song}</li>
+            <h2>Songs</h2>
+             {!songs ? "" :
+             songs.map((song, index) => (
+                <li key={index}>{song.trackId}</li>
              ))}
          </ul>
         <ul className="artistList">
-            {userArtists.map((artist, index) => (
-                <li key={index}>{artist}</li>
+            <h2>Artists</h2>
+            {!artists ? "" :
+            artists.map((artist, index) => (
+                <li key={index}>{artist.artistId}</li>
              ))}
          </ul>
          <ul className="albumList">
-            {userAlbums.map((album, index) => (
-                <li key={index}>{album}</li>
+            <h2>Albums</h2>
+            {!albums ? "" :
+            albums.map((album, index) => (
+                <li key={index}>{album.collectionId}</li>
              ))}
          </ul>
          </section>

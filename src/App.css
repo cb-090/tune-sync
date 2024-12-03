@@ -4,9 +4,9 @@ body {
 }
 
 .App {
-  display: grid;
-  grid-template: 20% auto / 18% auto;
-  height: 100vh;
+    display: grid;
+    grid-template: 20% auto / 18% auto;
+    height: 100vh;
 }
 
 header {

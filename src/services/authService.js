@@ -11,7 +11,15 @@ export function logout() {
 }
 
 export function loggedInUserDisplayName() {
-  return auth.currentUser?.displayName ?? ""
+  return auth.currentUser.displayName
+}
+
+export function loggedInUserProfilePhoto() {
+  return auth.currentUser.photoURL
+}
+
+export function loggedInUserId() {
+  return auth.currentUser.uid
 }
 
 export function useAuthentication() {

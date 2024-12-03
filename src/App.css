@@ -25,6 +25,9 @@ h1 {
 }
 
 button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
   font-size: 1.2em;
   font-family: "Kanit", sans-serif;
@@ -33,6 +36,11 @@ button {
   color: white;
   border-radius: 10px;
   border: 2px solid white;
+}
+
+.navButtons {
+  display: flex;
+  gap: 10px;
 }
 
 nav {
@@ -44,7 +52,7 @@ nav {
   gap: 10px;
 }
 
-li {
+nav li {
   border: 2px solid white;
   border-radius: 10px;
   color: white;
@@ -56,12 +64,118 @@ li {
   text-align: center;
 }
 
-li:hover {
+nav li:hover {
   background-color: white;
   color: #001d3d;
   cursor: pointer;
 }
 
-.feed, .profile {
+.feed, .userProfile {
+  padding: 20px;
   background-color: #dbedf8;
+  color: #001d3d;
+}
+
+.userProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  font-size: 1.4em;
+  width: 100%;
+  background-image: linear-gradient(to right, #5390d9, rgb(150, 215, 255));
+  color: white;
+  border: 2px solid white;
+}
+
+.userInfo img {
+  border-radius: 50%;
+}
+
+.searchButtons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.userProfile button {
+  background-color: #5390d9;
+}
+
+.favorites {
+  display: flex;
+  padding: 10px;
+  width: 80%;
+  gap: 20px;
+  background-image: linear-gradient(to right, #5390d9, rgb(150, 215, 255));
+  border-radius: 10px;
+  border: 2px solid #5390d9;
+}
+
+.favorites ul {
+  padding: 20px;
+  background-color: #dbedf8;
+  color: #00458e;
+  font-size: 1.2em;
+  border-radius: 10px;
+  border: 2px solid #5390d9;
+}
+
+input {
+  width: 500px;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+nav img {
+  height: 50px;
+  border-radius: 50%;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 20px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  padding-left: 0;
+}
+
+.card button {
+  border: 2px solid #2190d5;
+  color: white;
+  font-size: 1em;
+  height: min-content;
+}
+
+.card {
+  background-color: #4ea8de;
+  border: 2px solid #2190d5;
+  color: white;
+  list-style-type: none;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  gap: 50px;
+}
+
+button img {
+  height: 20px;
 }

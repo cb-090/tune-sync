@@ -1,12 +1,11 @@
-export default function Users({action}) {
+export default function Users({switchProfileTo, users}) {
     return <nav>
-        <li onClick={action}>Cara</li>
-        <li>Noa</li>
-        <li>Tara</li>
-        <li>User 4</li>
-        <li>User 5</li>
-        <li>User 6</li>
-        <li>User 7</li>
-        <li>User 8</li>
+        {!users ? "" :
+        users.map((user) => (
+            <li onClick = {() => switchProfileTo(user)} key={user.id}>
+                <img src={user.userPhoto} alt={"User photo"} />
+                {user.username}
+            </li>
+        ))}
     </nav>
 }

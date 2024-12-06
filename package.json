@@ -1,5 +1,7 @@
 {
   "name": "tune-sync",
+  "authors": "Tara Ramanathan, Noa Sasover, and Cara Babin",
+  "description": "A music sharing app to explore and connect to others on your musical vibe.",
   "private": true,
   "version": "0.0.0",
   "type": "module",

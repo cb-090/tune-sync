@@ -24,6 +24,29 @@ h1 {
   font-family: "Kanit", sans-serif;
 }
 
+h2 {
+  font-size: 2.3em;
+  text-shadow: 3px 3px 1px #8fd4ff, 5px 5px 1px white;
+  color: #44a0d9;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.7em;
+  padding: 15px;
+}
+
+.userLists h3 {
+  color: #00458e;
+  text-align: center;
+  margin: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
 button {
   display: flex;
   justify-content: center;
@@ -38,30 +61,45 @@ button {
   border: 2px solid white;
 }
 
-.navButtons {
+.options {
   display: flex;
   gap: 10px;
 }
 
+.feed, .profile, .home {
+  padding: 20px;
+  background-color: #dbedf8;
+  color: #001d3d;
+}
+
+/* USERLIST NAV BAR */
+
+li {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  gap: 20px;
+}
+
 nav {
-  background-color: #4ea7dea4;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #4ea7dea4;
   padding-top: 10px;
   gap: 10px;
 }
 
 nav li {
+  display: grid;
+  grid-template-columns: 30% auto;
   border: 2px solid white;
   border-radius: 10px;
   color: white;
   background-color: #44a0d9;
-  list-style-type: none;
   font-size: 1.3em;
   width: 80%;
   padding: 10px;
-  text-align: center;
 }
 
 nav li:hover {
@@ -70,13 +108,14 @@ nav li:hover {
   cursor: pointer;
 }
 
-.feed, .userProfile {
-  padding: 20px;
-  background-color: #dbedf8;
-  color: #001d3d;
+nav img {
+  height: 50px;
+  border-radius: 50%;
 }
 
-.userProfile {
+/* USER PROFILE */
+
+.profile {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,37 +128,26 @@ nav li:hover {
   align-items: center;
   padding: 20px 0;
   font-size: 1.4em;
-  width: 100%;
-  background-image: linear-gradient(to right, #5390d9, rgb(150, 215, 255));
+  background-color: #5390d9;
   color: white;
   border: 2px solid white;
+  width: 100%;
 }
 
 .userInfo img {
   border-radius: 50%;
 }
 
-.searchButtons {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.userProfile button {
-  background-color: #5390d9;
-}
-
-.favorites {
+.userLists {
   display: flex;
   padding: 10px;
-  width: 80%;
   gap: 20px;
   background-image: linear-gradient(to right, #5390d9, rgb(150, 215, 255));
   border-radius: 10px;
   border: 2px solid #5390d9;
 }
 
-.favorites ul {
+.userLists ul {
   padding: 20px;
   background-color: #dbedf8;
   color: #00458e;
@@ -128,27 +156,47 @@ nav li:hover {
   border: 2px solid #5390d9;
 }
 
-input {
-  width: 500px;
-}
+/* SEARCH BAR */
 
 form {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  width: 100%;
   gap: 20px;
 }
 
-nav img {
-  height: 50px;
-  border-radius: 50%;
-}
-
-li {
+form div {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: left;
   gap: 20px;
 }
+
+form button {
+  background-color: #5390d9;
+}
+
+.queryButtons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button[disabled] {
+  background-color: #00346b;
+  color: white;
+  border-color: white;
+  cursor: auto;
+}
+
+input {
+  width: 500px;
+  height: 20px;
+
+}
+
+/* RESULT CARDS */
 
 ul {
   display: flex;
@@ -156,29 +204,34 @@ ul {
   gap: 20px;
   width: 100%;
   padding-left: 0;
-}
-
-.card button {
-  border: 2px solid #2190d5;
-  color: white;
-  font-size: 1em;
-  height: min-content;
+  margin: 0;
 }
 
 .card {
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr 10% 10%;
+  align-items: center;
   background-color: #4ea8de;
   border: 2px solid #2190d5;
   color: white;
   list-style-type: none;
   padding: 15px;
   border-radius: 10px;
-  display: flex;
   gap: 50px;
+}
+
+.card button {
+  border: 2px solid #2190d5;
+  color: white;
+  font-size: 1em;
+  max-width: 100px;
 }
 
 button img {
   height: 20px;
 }
+
+/* USER FEEDS */
 
 .feed {
   display: grid;
@@ -186,16 +239,82 @@ button img {
   gap: 20px;
 }
 
-.feedHeader, .topAlbums {
+.feed h1, .topAlbums {
   grid-column: 1 / span 2;
 }
 
-.feedHeader h1 {
-  color: #00458e;
+.feed h1 {
+  background-color: #44a0d9;
+  color: white;
+  border-radius: 10px;
+  border: 4px solid white;
+  text-align: center;
+  padding: 20px;
 }
 
-.feedHeader {
-  height: 10%;
+section h3 {
+  color: #00346b;
+  padding: 15px;
+  margin: 20px;
+  border-radius: 50px;
+  text-align: left;
+}
+
+.topArtists h3 {
+  background-color:#4eb2ff;
+}
+
+.topAlbums h3 {
+  background-color:#b1a2ff;
+}
+
+.playlist h3 {
+  background-color:#6ee2ff;
+}
+
+.playlist {
+  background-color: #48bfe3;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.playlistTitle {
+  font-size: 1.5em;
+}
+
+.playlist ul {
+  grid-column: 1 / span 2;
+  gap: 0;
+  border-bottom: 2px solid #003b7a;
+}
+
+.playlist li {
+  display: grid;
+  grid-template-columns: 70px 50% auto;
+  padding: 10px;
+  background-color:#00458e;
+  border-top: 2px solid #003b7a;
+}
+
+.playlist li img {
+  height: 60px;
+}
+
+.playlistDesc {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 10px 0;
+}
+
+.playlistDesc img {
+  height: 100px;
+}
+
+.playlistBody {
+  background-color: #0050a5;
+  padding: 10px;
 }
 
 .topArtists {
@@ -207,7 +326,15 @@ button img {
 }
 
 .topArtists li {
+  display: grid;
+  grid-template-columns: 15% 40% auto;
+  align-items: center;
+  background-color: #dbedf8;
+  font-size: 1.1em;
+  color: #00346b;
+  padding: 20px;
   height: 50px;
+  border-radius: 10px;
 }
 
 .listIcon {
@@ -216,74 +343,50 @@ button img {
   font-size: 2em;
 }
 
-.playlist {
-  background-color: #48bfe3;
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.playlist ul {
-  grid-column: 1 / span 2;
-}
-
-.playlist li {
-  padding: 10px;
-  color: white;
-}
-
-.playlistDesc {
-  display: flex;
-  gap: 20px;
-}
-
-.playlistBody {
-  background-color: #0050a5;
-  padding: 10px;
-}
-
-.playlistDesc img {
-  height: 150px;
-}
-
-.topAlbums img {
-  height: 100px;
-}
-
-.topAlbums li {
-  display: flex;
-  flex-direction: column;
-  color:#dbedf8;
-}
-
-p {
-  color: white;
-}
-
-.playlistTitle {
-  font-size: 1.5em;
-}
-
-.topArtists li {
-  background-color: #dbedf8;
-  padding: 20px;
-  border-radius: 10px;
-  color:#00346b;
-}
-
 .topAlbums {
   background-color: #5e60ce;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 .topAlbums ul {
   display: flex;
   flex-direction: row;
+  font-size: .8em;
   gap: 30px;
 }
 
-h3 {
-  color: #00346b;
-  font-size: 1.6em;
+.topAlbums li {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #dbedf8;
+  background-color: #4d0090;
+  border: 2px solid #490088;
+  border-radius: 10px;
+  padding: 10px;
+  gap: 5px;
+  max-width: 120px;
 }
 
+.topAlbums img {
+  height: 100px;
+  padding-bottom: 10px;
+}
+
+.error {
+  color: #00346b;
+  font-size: 1.2em;
+  padding: 20px;
+}
+
+.home article {
+  background-color: #44a0d9;
+  box-shadow: 4px 4px 5px 2px white;
+  color: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2em;
+}

@@ -4,7 +4,7 @@ export default function Users({switchProfileTo, users}) {
         users.map((user) => (
             <li onClick = {() => switchProfileTo(user)} key={user.id}>
                 <img src={user.userPhoto} alt={"User photo"} />
-                {user.username}
+                <p>{user.username}</p>
             </li>
         ))}
     </nav>

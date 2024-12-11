@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useAuthentication, loggedInUserDisplayName, loggedInUserProfilePhoto, loggedInUserId } from '../services/authService.js'
-import { addUser, fetchUsers, addSong, addArtist, addAlbum, fetchSongs, fetchArtists, fetchAlbums } from "../services/databaseService.js"
+import { addUser, fetchUsers, addSong, addArtist, addAlbum, deleteSong, 
+  deleteArtist, deleteAlbum, fetchSongs, fetchArtists, fetchAlbums } from "../services/databaseService.js"
 
 import Header from './Header.jsx'
 import Users from './Users.jsx'
@@ -28,6 +29,21 @@ export default function App() {
   const [albums, setAlbums] = useState([])
 
   const user = useAuthentication()
+
+  async function remove(item) {
+    if (item?.trackId) {
+      console.log("removing song")
+      deleteSong(item).then(() => fetchProfile(profile))
+    }
+    if (item?.artistId) {
+      console.log("removing artist")
+      deleteArtist(item).then(() => fetchProfile(profile))
+    }
+    if (item?.collectionId) {
+      console.log("removing album")
+      deleteAlbum(item).then(() => fetchProfile(profile))
+    }
+  }
 
   async function save(result) {
     console.log("saving!")
@@ -165,7 +181,7 @@ export default function App() {
       <Users switchProfileTo={switchProfileTo} users={userList}/>
       {editing ?
       <div className="profile">
-        <UserProfile profile={profile} songs={songs} artists={artists} albums={albums} />
+        <UserProfile profile={profile} remove={remove} songs={songs} artists={artists} albums={albums} />
         <SearchBar action={setQuery} selectOption={setQueryType} />
         <Results data={searchData} save={save}/>
       </div> :

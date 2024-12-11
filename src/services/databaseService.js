@@ -7,6 +7,7 @@ import {
   getDocs,
   where,
   setDoc,
+  deleteDoc,
   orderBy,
   limit,
   Timestamp,
@@ -76,6 +77,30 @@ export async function addAlbum(album) {
   }
 
   const docRef = await setDoc(doc(db, "albums", `${data.userId}.${data.collectionId}`), data)
+  
+  return true
+}
+
+export async function deleteSong(song) {
+  const userId = loggedInUserId()
+
+  const docRef = await deleteDoc(doc(db, "songs", `${userId}.${song.trackId}`))
+  
+  return true
+}
+
+export async function deleteArtist(artist) {
+  const userId = loggedInUserId()
+
+  const docRef = await deleteDoc(doc(db, "artists", `${userId}.${artist.artistId}`))
+  
+  return true
+}
+
+export async function deleteAlbum(album) {
+  const userId = loggedInUserId()
+
+  const docRef = await deleteDoc(doc(db, "albums", `${userId}.${album.collectionId}`))
   
   return true
 }

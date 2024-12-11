@@ -1,4 +1,4 @@
-export default function UserProfile( {profile, songs, artists, albums} ) {
+export default function UserProfile( {profile, remove, songs, artists, albums} ) {
 
     return !profile || !songs || !artists || !albums ?
     <div className="error">
@@ -9,26 +9,35 @@ export default function UserProfile( {profile, songs, artists, albums} ) {
             <img src={profile.userPhoto} alt="User's profile picture"></img>
             Hello, {profile.username}
         </section>
-        <section className="userLists">
-            <ul className="songList">
+        <section className="userMusic">
+            <ul className="userList">
                 <h3>Songs</h3>
                 {!songs ? "" :
                 songs.map((song, index) => (
-                    <li key={index}>{song.name}</li>
+                    <li onClick={() => remove(song)} key={index}>
+                        <p>{song.name}</p>
+                        <p>🗑️</p>
+                    </li>
                 ))}
             </ul>
-            <ul className="artistList">
+            <ul className="userList">
                 <h3>Artists</h3>
                 {!artists ? "" :
                 artists.map((artist, index) => (
-                    <li key={index}>{artist.name}</li>
+                    <li onClick={() => remove(artist)} key={index}>
+                        <p>{artist.name}</p>
+                        <p>🗑️</p>
+                    </li>
                 ))}
             </ul>
-            <ul className="albumList">
+            <ul className="userList">
                 <h3>Albums</h3>
                 {!albums ? "" :
                 albums.map((album, index) => (
-                    <li key={index}>{album.name}</li>
+                    <li onClick={() => remove(album)} key={index}>
+                        <p>{album.name}</p>
+                        <p>🗑️</p>
+                    </li>
                 ))}
             </ul>
          </section>

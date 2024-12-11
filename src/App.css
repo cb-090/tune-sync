@@ -36,7 +36,7 @@ h3 {
   padding: 15px;
 }
 
-.userLists h3 {
+.userMusic h3 {
   color: #00458e;
   text-align: center;
   margin: 0;
@@ -138,7 +138,7 @@ nav img {
   border-radius: 50%;
 }
 
-.userLists {
+.userMusic {
   display: flex;
   padding: 10px;
   gap: 20px;
@@ -147,13 +147,26 @@ nav img {
   border: 2px solid #5390d9;
 }
 
-.userLists ul {
+.userMusic ul {
   padding: 20px;
   background-color: #dbedf8;
   color: #00458e;
   font-size: 1.2em;
   border-radius: 10px;
   border: 2px solid #5390d9;
+}
+
+.userList li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userList li:hover {
+  cursor: pointer;
+}
+
+.userList li p:first-child:hover {
+  text-decoration: underline;
 }
 
 /* SEARCH BAR */
